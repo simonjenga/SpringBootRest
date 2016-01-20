@@ -58,8 +58,7 @@ A sum of all transactions that are transitively linked by their parent_id to $tr
 - `GET /transactionservice/sum/11` => `{"sum":10000} `
 
 Building The Project
-====================
-
+----------
 The project compiles with ```JDK >= 1.5``` and ```Maven >= 3.1.1``` as the build tool and to also manage the project dependencies.
 
 To run Maven build, execute the following from a console/command prompt with the project root directory as the top level directory:
@@ -74,12 +73,17 @@ Then run the JAR file created by executing the following:
 
 Point your browser to: ```http://localhost:8080```
 
-To add data to the database:
+To interact with the REST services using Git Bash execute the following:
+
 ```curl -X POST -H "Content-Type: application/json" -d '{ "id": 1, "amount": 5000, "type": "test_type", "parent_id": 1 }' http://localhost:8080/transactionservice/transaction```
 
-Refresh the browser page.
+```curl -X GET -H "Content-type: application/json" http://localhost:8080/transactionservice/transactions```
 
-Alternatively, you can use the web browser plugin/addon called RESTClient(a debugger for RESTful web services) to enable you to interact with the web services.
+```curl -X PUT -H "Content-type: application/json" '{ "amount": 5000, "type": "test_type", "parent_id": 1 }' http://localhost:8080/transactionservice/transaction/1```
+
+You can refresh the browser page also.
+
+Alternatively, you can use the web browser plugin/addon called RESTClient(a debugger for RESTful web services) to enable you to interact with the REST services.
 
 To run Unit tests, execute the following:
 
