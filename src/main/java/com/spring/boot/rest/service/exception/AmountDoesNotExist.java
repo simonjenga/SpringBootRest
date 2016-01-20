@@ -10,10 +10,10 @@ public class AmountDoesNotExist extends Exception {
     private static final long serialVersionUID = 514455541191696531L;
 
     /**
-	 * Constructor 
-	 * @param message message to throw
-	 */
-	public AmountDoesNotExist(final String message) {
+     * Constructor 
+     * @param message message to throw
+     */
+    public AmountDoesNotExist(final String message) {
         super(message);
     }
 }

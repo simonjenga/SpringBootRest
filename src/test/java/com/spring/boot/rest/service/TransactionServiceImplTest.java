@@ -24,7 +24,7 @@ import com.spring.boot.rest.util.TransactionUtil;
 @RunWith(MockitoJUnitRunner.class)
 public class TransactionServiceImplTest {
 
-	@Mock
+    @Mock
     private TransactionRepository transactionRepository;
 
     private TransactionService transactionService;

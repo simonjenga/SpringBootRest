@@ -23,16 +23,16 @@ import com.spring.boot.rest.service.exception.TransactionAlreadyExists;
 import com.spring.boot.rest.service.exception.TransactionDoesNotExist;
 
 /**
-* This controller class handles all REST requests about entities for {@link Transaction}
-*  
-* @author Simon Njenga
-* @version 0.1
-*/
+ * This controller class handles all REST requests about entities for {@link Transaction}
+ *  
+ * @author Simon Njenga
+ * @version 0.1
+ */
 @RestController
 @RequestMapping(value = "/transactionservice")
 public class TransactionController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TransactionController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionController.class);
     private final TransactionService transactionService;
 
     @Inject
@@ -45,11 +45,11 @@ public class TransactionController {
     @ResponseBody 
     public Transaction addTransaction(@RequestBody @Valid final Transaction transaction) {
     	LOGGER.debug("Received request to create the {}", transaction);
-    	try {
-    		return transactionService.saveTransaction(transaction);
-		} catch (TransactionAlreadyExists e) {
-			throw new IllegalStateException(e);
-		}        
+        try {
+            return transactionService.saveTransaction(transaction);
+        } catch (TransactionAlreadyExists e) {
+            throw new IllegalStateException(e);
+        }
     } 
     
     // update a transaction
@@ -58,10 +58,10 @@ public class TransactionController {
     public Transaction putTransaction(@PathVariable("id") String id, @RequestBody @Valid final Transaction transaction) {
     	LOGGER.debug("Received request to put the {}", transaction);
         try {
-        	return transactionService.updateTransaction(Long.valueOf(id), transaction);
-		} catch (TransactionDoesNotExist e) {
-			throw new IllegalStateException(e);
-		}
+            return transactionService.updateTransaction(Long.valueOf(id), transaction);
+        } catch (TransactionDoesNotExist e) {
+            throw new IllegalStateException(e);
+        }
     }
     
     // list all transactions
@@ -72,7 +72,7 @@ public class TransactionController {
         return transactionService.getTransactionList();
     }
     
-	@ExceptionHandler
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public String handleUserAlreadyExistsException(TransactionAlreadyExists e) {
         return e.getMessage();

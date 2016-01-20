@@ -23,16 +23,16 @@ import com.spring.boot.rest.service.exception.AmountDoesNotExist;
 import com.spring.boot.rest.service.exception.TransactionAlreadyExists;
 
 /**
-* This controller class handles all REST requests about entities for {@link Amount}
-*  
-* @author Simon Njenga
-* @version 0.1
-*/
+ * This controller class handles all REST requests about entities for {@link Amount}
+ *  
+ * @author Simon Njenga
+ * @version 0.1
+ */
 @RestController
 @RequestMapping(value = "/sum")
 public class AmountController {
-	
-	private static final Logger LOGGER = LoggerFactory.getLogger(AmountController.class);
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AmountController.class);
     private final AmountService amountService;
 
     @Inject
@@ -46,24 +46,24 @@ public class AmountController {
     public Double listTransactionIDs(@PathVariable("id") String id) {
         LOGGER.debug("Received request to list all transaction IDs");        
         try {
-        	List<Amount> amounts = amountService.getAmountList(Long.parseLong(id));
+            List<Amount> amounts = amountService.getAmountList(Long.parseLong(id));
             List<Parent> parentIDs = new LinkedList<Parent>();
-            
+
             Double totalAmount = 0D;
-            
+
             for (int i = 0; i < amounts.size(); i++) {
-            	totalAmount = totalAmount + amounts.get(i).getTransaction().getAmount().get(i).getAmount();
-            	parentIDs.add(amounts.get(i).getTransaction().getParent_id().get(i));
-    		}
-            
-            for (int i = 0; i < parentIDs.size(); i++) {
-            	totalAmount = totalAmount + parentIDs.get(i).getTransaction().getAmount().get(i).getAmount();
+                totalAmount = totalAmount + amounts.get(i).getTransaction().getAmount().get(i).getAmount();
+                parentIDs.add(amounts.get(i).getTransaction().getParent_id().get(i));
             }
-            
+
+            for (int i = 0; i < parentIDs.size(); i++) {
+                totalAmount = totalAmount + parentIDs.get(i).getTransaction().getAmount().get(i).getAmount();
+            }
+
             return totalAmount;
-		} catch (AmountDoesNotExist e) {
-			throw new IllegalStateException(e);
-		}       
+        } catch (AmountDoesNotExist e) {
+            throw new IllegalStateException(e);
+        }
     }
     
     @ExceptionHandler

@@ -21,16 +21,16 @@ import com.spring.boot.rest.service.TypeService;
 import com.spring.boot.rest.service.exception.TransactionAlreadyExists;
 
 /**
-* This controller class handles all REST requests about entities for {@link Type}
-*  
-* @author Simon Njenga
-* @version 0.1
-*/
+ * This controller class handles all REST requests about entities for {@link Type}
+ *  
+ * @author Simon Njenga
+ * @version 0.1
+ */
 @RestController
 @RequestMapping(value = "/types")
 public class TypeController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TypeController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TypeController.class);
     private final TypeService typeService;
 
     @Inject
@@ -46,8 +46,8 @@ public class TypeController {
         List<Type> types = typeService.getTypeList(type);
         List<Long> tranactionIDs = new LinkedList<Long>();
         for (int i = 0; i < types.size(); i++) {
-        	tranactionIDs.add(types.get(i).getTransaction().getId());
-		}
+            tranactionIDs.add(types.get(i).getTransaction().getId());
+        }
         return tranactionIDs;
     }
     

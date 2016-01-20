@@ -18,16 +18,16 @@ import com.spring.boot.rest.service.exception.TransactionAlreadyExists;
 import com.spring.boot.rest.service.exception.TransactionDoesNotExist;
 
 /**
-* Service implementation class for {@link TransactionService}
-*  
-* @author Simon Njenga
-* @version 0.1
-*/
+ * Service implementation class for {@link TransactionService}
+ *  
+ * @author Simon Njenga
+ * @version 0.1
+ */
 @Service
 @Validated
 public class TransactionServiceImpl implements TransactionService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TransactionServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionServiceImpl.class);
     private final TransactionRepository repository;
 
     @Inject
@@ -37,37 +37,37 @@ public class TransactionServiceImpl implements TransactionService {
     
     @Override
     @Transactional
-	public Transaction saveTransaction(@NotNull @Valid final Transaction transaction)
+    public Transaction saveTransaction(@NotNull @Valid final Transaction transaction)
         throws TransactionAlreadyExists {
-    	LOGGER.debug("Creating {}", transaction);
-    	Transaction existing = repository.findOne(transaction.getId());
-    	if (existing != null) {
+        LOGGER.debug("Creating {}", transaction);
+        Transaction existing = repository.findOne(transaction.getId());
+        if (existing != null) {
             throw new TransactionAlreadyExists(
-                    String.format("There already exists a transaction with id=%s", transaction.getId()));
+                String.format("There already exists a transaction with id=%s", transaction.getId()));
         }
         return repository.save(transaction);
-	}
-    
+    }
+
     @Override
     @Transactional
-	public Transaction updateTransaction(Long id, @NotNull @Valid final Transaction transaction) 
+    public Transaction updateTransaction(Long id, @NotNull @Valid final Transaction transaction) 
         throws TransactionDoesNotExist {
-    	LOGGER.debug("Creating {}", transaction);
-    	Transaction existing = repository.findOne(id);
-    	if (existing == null) {
+        LOGGER.debug("Creating {}", transaction);
+        Transaction existing = repository.findOne(id);
+        if (existing == null) {
             throw new TransactionDoesNotExist(
-                    String.format("There is not a transaction with id=%s", id));
+                String.format("There is not a transaction with id=%s", id));
         }
-    	existing.setAmount(transaction.getAmount());    	
-    	existing.setType(transaction.getType());
-    	existing.setParent_id(transaction.getParent_id());
+        existing.setAmount(transaction.getAmount());    	
+        existing.setType(transaction.getType());
+        existing.setParent_id(transaction.getParent_id());
         return repository.save(transaction);
-	}
-    
+    }
+
     @Override
     @Transactional(readOnly = true)
-	public List<Transaction> getTransactionList() {
-    	LOGGER.debug("Retrieving the list of all transactions");
-    	return repository.findAll();
-	}
+    public List<Transaction> getTransactionList() {
+        LOGGER.debug("Retrieving the list of all transactions");
+        return repository.findAll();
+    }
 }

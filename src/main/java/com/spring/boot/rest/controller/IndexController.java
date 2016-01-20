@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 0.1
  */
 @RestController
-public class IndexController implements ErrorController{
+public class IndexController implements ErrorController {
 
     private static final String PATH = "/error";
 

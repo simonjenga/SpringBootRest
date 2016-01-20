@@ -15,17 +15,17 @@ import com.spring.boot.rest.repository.AmountRepository;
 import com.spring.boot.rest.service.exception.AmountDoesNotExist;
 
 /**
-* Service implementation class for {@link AmountService}
-*  
-* @author Simon Njenga
-* @version 0.1
-*/
+ * Service implementation class for {@link AmountService}
+ *  
+ * @author Simon Njenga
+ * @version 0.1
+ */
 @Service
 @Validated
 public class AmountServiceImpl implements AmountService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(AmountServiceImpl.class);
-	private final AmountRepository repository;
+    private static final Logger LOGGER = LoggerFactory.getLogger(AmountServiceImpl.class);
+    private final AmountRepository repository;
 
     @Inject
     public AmountServiceImpl(final AmountRepository repository) {
@@ -33,15 +33,14 @@ public class AmountServiceImpl implements AmountService {
     }
     
     @Override
-	@Transactional(readOnly = true)
-	public List<Amount> getAmountList(Long id) throws AmountDoesNotExist {
-		Amount existing = repository.findOne(id);
-    	if (existing == null) {
+    @Transactional(readOnly = true)
+    public List<Amount> getAmountList(Long id) throws AmountDoesNotExist {
+        Amount existing = repository.findOne(id);
+        if (existing == null) {
             throw new AmountDoesNotExist(
-                    String.format("There is not an amount with id=%s", id));
+                String.format("There is not an amount with id=%s", id));
         }
-    	List<Amount> amounts = existing.getTransaction().getAmount();    	
-		return amounts;
-	}
-
+        List<Amount> amounts = existing.getTransaction().getAmount();    	
+        return amounts;
+    }
 }

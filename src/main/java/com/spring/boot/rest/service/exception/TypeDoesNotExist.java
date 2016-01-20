@@ -10,10 +10,10 @@ public class TypeDoesNotExist extends Exception {
     private static final long serialVersionUID = 514455541191696531L;
 
     /**
-	 * Constructor 
-	 * @param message message to throw
-	 */
-	public TypeDoesNotExist(final String message) {
+     * Constructor 
+     * @param message message to throw
+     */
+    public TypeDoesNotExist(final String message) {
         super(message);
     }
 }
