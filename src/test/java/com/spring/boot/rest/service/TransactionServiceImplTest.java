@@ -52,7 +52,7 @@ public class TransactionServiceImplTest {
     
     /**
      * This test should save a new transaction and given there exists one with the
-     * same Id, then the the exception should be thrown.
+     * same Id, then an exception should be thrown.
      * 
      * @throws Exception If something goes wrong
      */
