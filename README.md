@@ -74,7 +74,8 @@ Then run the JAR file created by executing the following:
 
 Point your browser to: ```http://localhost:8080```
 
-To add data to the database: ```curl -X POST -H "Content-Type: application/json" -d '{ "id": 1, "amount": 5000, "type": "test_type", "parent_id": 1 }' http://localhost:8080/transactionservice/transaction```
+To add data to the database:
+```curl -X POST -H "Content-Type: application/json" -d '{ "id": 1, "amount": 5000, "type": "test_type", "parent_id": 1 }' http://localhost:8080/transactionservice/transaction```
 
 Refresh the browser page.
 
