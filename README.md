@@ -57,8 +57,8 @@ A sum of all transactions that are transitively linked by their parent_id to $tr
 
 - `GET /transactionservice/sum/11` => `{"sum":10000} `
 
-Building The Project
-----------
+Building The Project:
+----------------------
 The project compiles with ```JDK >= 1.5``` and ```Maven >= 3.1.1``` as the build tool and to also manage the project dependencies.
 
 To run Maven build, execute the following from a console/command prompt with the project root directory as the top level directory:
