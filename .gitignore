@@ -1,0 +1,10 @@
+target/
+.idea
+*.iml
+local-repo/
+/bin
+.settings/
+.classpath
+.project
+.wtpmodules
+GoEuroTest.csv
