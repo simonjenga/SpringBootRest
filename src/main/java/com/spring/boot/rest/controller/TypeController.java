@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.boot.rest.domain.Type;
 import com.spring.boot.rest.service.TypeService;
 import com.spring.boot.rest.service.exception.TransactionAlreadyExists;
+import com.spring.boot.rest.util.TransactionUtil;
 
 /**
  * This controller class handles all REST requests about entities for {@link Type}
@@ -46,7 +47,9 @@ public class TypeController {
         List<Type> types = typeService.getTypeList(type);
         List<Long> tranactionIDs = new LinkedList<Long>();
         for (int i = 0; i < types.size(); i++) {
-            tranactionIDs.add(types.get(i).getTransaction().getId());
+            if (TransactionUtil.transactionNotNull(types.get(i).getTransaction())) {
+                tranactionIDs.add(types.get(i).getTransaction().getId());
+            }
         }
         return tranactionIDs;
     }

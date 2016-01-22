@@ -14,6 +14,8 @@ import org.springframework.validation.annotation.Validated;
 import com.spring.boot.rest.domain.Amount;
 import com.spring.boot.rest.repository.AmountRepository;
 import com.spring.boot.rest.service.exception.AmountDoesNotExist;
+import com.spring.boot.rest.util.AmountUtil;
+import com.spring.boot.rest.util.TransactionUtil;
 
 /**
  * Service implementation class for {@link AmountService}
@@ -25,7 +27,7 @@ import com.spring.boot.rest.service.exception.AmountDoesNotExist;
 @Validated
 public class AmountServiceImpl implements AmountService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(AmountServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AmountServiceImpl.class);
     private final AmountRepository repository;
 
     @Inject
@@ -43,27 +45,20 @@ public class AmountServiceImpl implements AmountService {
                 String.format("There is not an amount with id=%s", id));
         }
         List<Amount> totalAmounts = new LinkedList<Amount>();
-        
+
         for (int i = 0; i < existing.getTransaction().getAmount().size(); i++) {
-        	Amount amount = existing.getTransaction().getAmount().get(i);
-        	this.checkAmountIsNotNull(amount, totalAmounts);
-		}
-        
-        for (int i = 0; i < existing.getTransaction().getParent_id().get(i).getTransaction().getAmount().size(); i++) {
-        	Amount amount = existing.getTransaction().getParent_id().get(i).getTransaction().getAmount().get(i);
-        	this.checkAmountIsNotNull(amount, totalAmounts);
-		}          	
-        return totalAmounts;
-    }
-    
-    private List<Amount> checkAmountIsNotNull(Amount amount, List<Amount> amounts) {
-        if (amount != null) {
-            amounts.add(amount);
-        } else {
-        	Amount newAmount = new Amount();
-        	newAmount.setAmount(0D);
-            amounts.add(newAmount);
+            if (TransactionUtil.transactionNotNull(existing.getTransaction())) {
+                Amount amount = existing.getTransaction().getAmount().get(i);
+                AmountUtil.amountNotNull(amount, totalAmounts);
+            }
         }
-        return amounts;
+
+        for (int i = 0; i < existing.getTransaction().getParent_id().get(i).getTransaction().getAmount().size(); i++) {
+            if (TransactionUtil.transactionNotNull(existing.getTransaction().getParent_id().get(i).getTransaction())) {
+                Amount amount = existing.getTransaction().getParent_id().get(i).getTransaction().getAmount().get(i);
+                AmountUtil.amountNotNull(amount, totalAmounts);
+            }
+        }
+        return totalAmounts;
     }
 }

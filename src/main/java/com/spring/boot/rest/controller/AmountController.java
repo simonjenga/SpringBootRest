@@ -43,8 +43,8 @@ public class AmountController {
     // a total of transactions that are transitively linked by their parent_id to transaction_id
     @RequestMapping(value = "/sum/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Double listTransactionIDs(@PathVariable("id") String id) {
-        LOGGER.debug("Received request to list all transaction IDs");        
+    public Double sumOfAllTransactions(@PathVariable("id") String id) {
+        LOGGER.debug("Received request to sum all amounts by transaction ID");        
         try {
             List<Amount> amounts = amountService.getAmountList(Long.parseLong(id));
 
