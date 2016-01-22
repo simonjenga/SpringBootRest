@@ -2,6 +2,7 @@ package com.spring.boot.rest.controller;
 
 import java.util.Collection;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +40,7 @@ public class TransactionControllerTest {
      * @throws Exception If something goes wrong
      */
     @Test
-    public void shouldCreateTransaction() throws Exception {
+    public void testShouldCreateTransaction() throws Exception {
         final Transaction storedTransaction = this.stubRepositoryToReturnStoredTransaction();
         final Transaction transaction = TransactionUtil.createTransaction();
         Transaction returnedTransaction = transactionController.addTransaction(transaction);
@@ -54,7 +55,7 @@ public class TransactionControllerTest {
      * @throws Exception If something goes wrong
      */
     @Test
-    public void listAllTransactions() throws Exception {
+    public void testListAllTransactions() throws Exception {
     	this.stubServiceToReturnExistingTransaction(20);
         Collection<Transaction> transactions = transactionController.listTransactions();
         Assert.assertNotNull(transactions);
@@ -77,5 +78,9 @@ public class TransactionControllerTest {
      */
     private void stubServiceToReturnExistingTransaction(int howMany) {
     	Mockito.when(transactionService.getTransactionList()).thenReturn(TransactionUtil.createTransactionList(howMany));
+    }
+    
+    @After
+    public void tearDown(){
     }
 }

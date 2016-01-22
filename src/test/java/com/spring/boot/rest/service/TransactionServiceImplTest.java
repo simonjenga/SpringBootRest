@@ -2,6 +2,7 @@ package com.spring.boot.rest.service;
 
 import java.util.Collection;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +42,7 @@ public class TransactionServiceImplTest {
      * @throws Exception If something goes wrong
      */
     @Test
-    public void saveAndReturnTransaction() throws Exception {
+    public void testSaveAndReturnTransaction() throws Exception {
         final Transaction savedTransaction = stubRepositoryToReturnTransactionOnSave();
         final Transaction transaction = TransactionUtil.createTransaction();
         final Transaction returnedTransaction = transactionService.saveTransaction(transaction);
@@ -57,7 +58,7 @@ public class TransactionServiceImplTest {
      * @throws Exception If something goes wrong
      */
     @Test
-    public void saveNewTransactionWithTheSameId() throws Exception {
+    public void testSaveNewTransactionWithTheSameId() throws Exception {
     	this.stubRepositoryToReturnExistingTransaction();
         try {
         	transactionService.saveTransaction(TransactionUtil.createTransaction());        	
@@ -75,7 +76,7 @@ public class TransactionServiceImplTest {
      * @throws Exception If something goes wrong
      */
     @Test
-    public void listAllTransactions() throws Exception {
+    public void testListAllTransactions() throws Exception {
     	this.stubRepositoryToReturnExistingTransactions(20);
     	Collection<Transaction> list = transactionService.getTransactionList();
     	Assert.assertNotNull(list);
@@ -90,7 +91,7 @@ public class TransactionServiceImplTest {
      * @throws Exception If something goes wrong
      */
     @Test
-    public void listNotAnyTransactions() throws Exception {
+    public void testListNotAnyTransactions() throws Exception {
     	this.stubRepositoryToReturnExistingTransactions(0);
         Collection<Transaction> list = transactionService.getTransactionList();
         Assert.assertNotNull(list);
@@ -120,5 +121,9 @@ public class TransactionServiceImplTest {
     private void stubRepositoryToReturnExistingTransaction() {
     	final Transaction transaction = TransactionUtil.createTransaction();
     	Mockito.when(transactionRepository.findOne(transaction.getId())).thenReturn(transaction);
+    }
+
+    @After
+    public void tearDown(){
     }
 }

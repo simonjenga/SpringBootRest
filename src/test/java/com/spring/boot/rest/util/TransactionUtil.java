@@ -20,13 +20,21 @@ public class TransactionUtil {
     private static List<Type> types = new ArrayList<Type>();
     private static List<Parent> parents = new ArrayList<Parent>();
 
-    private static Transaction transaction =  new Transaction(1L, amounts, types, parents);
+    private static Transaction transaction;
 
     // Suppresses default constructor, ensuring non-instantiability.
-    private TransactionUtil() {
-        Amount amount = new Amount();
+    private TransactionUtil() {       
+    }
+
+    /**
+     * Creates and returns a single transaction.
+     */
+    public static Transaction createTransaction() {
+    	transaction =  new Transaction();
+    	
+    	Amount amount = new Amount();
         amount.setId(1L);
-        amount.setAmount(10D);
+        amount.setAmount(5000D);
         amount.setTransaction(transaction);
         amounts.add(amount);
 
@@ -41,12 +49,11 @@ public class TransactionUtil {
         parent.setParent_id(1L);
         parent.setTransaction(transaction);	
         parents.add(parent);
-    }
-
-    /**
-     * Creates and returns a single transaction.
-     */
-    public static Transaction createTransaction() {
+        
+        transaction.setAmount(amounts);
+        transaction.setType(types);
+        transaction.setParent_id(parents);
+        
         return transaction;
     }
 
