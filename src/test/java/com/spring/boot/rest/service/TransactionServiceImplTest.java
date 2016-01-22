@@ -112,7 +112,7 @@ public class TransactionServiceImplTest {
      * Stub method.
      */
     private void stubRepositoryToReturnExistingTransactions(int howMany) {
-    	Mockito.when(transactionRepository.findAll()).thenReturn(TransactionUtil.createTransactionList(howMany));
+    	Mockito.when(transactionRepository.findAll()).thenReturn(TransactionUtil.transactionList(howMany));
     }
     
     /**

@@ -77,7 +77,7 @@ public class TransactionControllerTest {
      * Stub method.
      */
     private void stubServiceToReturnExistingTransaction(int howMany) {
-    	Mockito.when(transactionService.getTransactionList()).thenReturn(TransactionUtil.createTransactionList(howMany));
+    	Mockito.when(transactionService.getTransactionList()).thenReturn(TransactionUtil.transactionList(howMany));
     }
     
     @After
