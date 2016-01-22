@@ -46,6 +46,7 @@ public class AmountServiceImpl implements AmountService {
         }
         List<Amount> totalAmounts = new LinkedList<Amount>();
 
+        // get amounts for all transactions that are NOT transitively linked by their parent_id to transaction_id
         for (int i = 0; i < existing.getTransaction().getAmount().size(); i++) {
             if (TransactionUtil.transactionNotNull(existing.getTransaction())) {
                 Amount amount = existing.getTransaction().getAmount().get(i);
@@ -53,6 +54,7 @@ public class AmountServiceImpl implements AmountService {
             }
         }
 
+        // get amounts for all transactions that ARE transitively linked by their parent_id to transaction_id
         for (int i = 0; i < existing.getTransaction().getParent_id().get(i).getTransaction().getAmount().size(); i++) {
             if (TransactionUtil.transactionNotNull(existing.getTransaction().getParent_id().get(i).getTransaction())) {
                 Amount amount = existing.getTransaction().getParent_id().get(i).getTransaction().getAmount().get(i);
