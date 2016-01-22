@@ -32,7 +32,7 @@ public class TransactionUtil {
     public static Transaction createTransaction() {
     	transaction =  new Transaction();
     	
-    	Amount amount = new Amount();
+        Amount amount = new Amount();
         amount.setId(1L);
         amount.setAmount(5000D);
         amount.setTransaction(transaction);
