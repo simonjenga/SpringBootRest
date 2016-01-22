@@ -1,6 +1,5 @@
 package com.spring.boot.rest.service;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,7 +24,7 @@ import com.spring.boot.rest.service.exception.AmountDoesNotExist;
 @Validated
 public class AmountServiceImpl implements AmountService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(AmountServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AmountServiceImpl.class);
     private final AmountRepository repository;
 
     @Inject
@@ -36,34 +35,12 @@ public class AmountServiceImpl implements AmountService {
     @Override
     @Transactional(readOnly = true)
     public List<Amount> getAmountList(Long id) throws AmountDoesNotExist {
-    	LOGGER.debug("Retrieving{} the list of all transactions by ID:", id);
         Amount existing = repository.findOne(id);
         if (existing == null) {
             throw new AmountDoesNotExist(
                 String.format("There is not an amount with id=%s", id));
         }
-        List<Amount> totalAmounts = new LinkedList<Amount>();
-        
-        for (int i = 0; i < existing.getTransaction().getAmount().size(); i++) {
-        	Amount amount = existing.getTransaction().getAmount().get(i);
-        	this.checkAmountIsNotNull(amount, totalAmounts);
-		}
-        
-        for (int i = 0; i < existing.getTransaction().getParent_id().get(i).getTransaction().getAmount().size(); i++) {
-        	Amount amount = existing.getTransaction().getParent_id().get(i).getTransaction().getAmount().get(i);
-        	this.checkAmountIsNotNull(amount, totalAmounts);
-		}          	
-        return totalAmounts;
-    }
-    
-    private List<Amount> checkAmountIsNotNull(Amount amount, List<Amount> amounts) {
-        if (amount != null) {
-            amounts.add(amount);
-        } else {
-        	Amount newAmount = new Amount();
-        	newAmount.setAmount(0D);
-            amounts.add(newAmount);
-        }
+        List<Amount> amounts = existing.getTransaction().getAmount();    	
         return amounts;
     }
 }
