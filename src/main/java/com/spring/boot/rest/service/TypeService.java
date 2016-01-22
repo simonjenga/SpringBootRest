@@ -15,6 +15,13 @@ public interface TypeService {
     /**
      * Retrieves a list of all <code>Type</code> objects from the database.
      * 
+     * @return a <code>List</code> of all <code>Type</code> objects
+     */
+    List<Type> getAllTypeList();
+
+    /**
+     * Retrieves a list of all <code>Type</code> objects from the database.
+     * 
      * @param <code>String</code>type, type object to retrieve.
      * @return a <code>List</code> of <code>Type</code> objects
      */

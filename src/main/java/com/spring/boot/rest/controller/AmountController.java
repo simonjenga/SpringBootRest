@@ -29,7 +29,7 @@ import com.spring.boot.rest.service.exception.TransactionAlreadyExists;
  * @version 0.1
  */
 @RestController
-@RequestMapping(value = "/sum")
+@RequestMapping(value = "/transactionservice")
 public class AmountController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AmountController.class);
@@ -41,26 +41,19 @@ public class AmountController {
     }
     
     // a total of transactions that are transitively linked by their parent_id to transaction_id
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/sum/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Double listTransactionIDs(@PathVariable("id") String id) {
         LOGGER.debug("Received request to list all transaction IDs");        
         try {
             List<Amount> amounts = amountService.getAmountList(Long.parseLong(id));
-            List<Parent> parentIDs = new LinkedList<Parent>();
 
-            Double totalAmount = 0D;
+            Double addedAmountInTotal = 0D;
 
             for (int i = 0; i < amounts.size(); i++) {
-                totalAmount = totalAmount + amounts.get(i).getTransaction().getAmount().get(i).getAmount();
-                parentIDs.add(amounts.get(i).getTransaction().getParent_id().get(i));
+            	addedAmountInTotal = (addedAmountInTotal + amounts.get(i).getAmount());
             }
-
-            for (int i = 0; i < parentIDs.size(); i++) {
-                totalAmount = totalAmount + parentIDs.get(i).getTransaction().getAmount().get(i).getAmount();
-            }
-
-            return totalAmount;
+            return addedAmountInTotal;
         } catch (AmountDoesNotExist e) {
             throw new IllegalStateException(e);
         }

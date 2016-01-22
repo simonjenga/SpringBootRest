@@ -27,7 +27,7 @@ import com.spring.boot.rest.service.exception.TransactionAlreadyExists;
  * @version 0.1
  */
 @RestController
-@RequestMapping(value = "/types")
+@RequestMapping(value = "/transactionservice")
 public class TypeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TypeController.class);
@@ -39,7 +39,7 @@ public class TypeController {
     }
     
     // list of all transaction ids that share the same type
-    @RequestMapping(value = "/{type}", method = RequestMethod.GET)
+    @RequestMapping(value = "/types/{type}", method = RequestMethod.GET)
     @ResponseBody
     public List<Long> listTransactionIDs(@PathVariable("type") String type) {
         LOGGER.debug("Received request to list all transaction IDs");

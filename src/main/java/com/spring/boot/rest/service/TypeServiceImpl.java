@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -24,6 +25,7 @@ import com.spring.boot.rest.repository.TypeRepository;
  */
 @Service
 @Validated
+@Repository
 public class TypeServiceImpl implements TypeService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TypeServiceImpl.class);
@@ -44,5 +46,12 @@ public class TypeServiceImpl implements TypeService {
         TypedQuery<Type> query = em.createQuery("select transaction from Type t where t.type = ?1", Type.class);
         query.setParameter(1, type);
         return query.getResultList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Type> getAllTypeList() {
+        LOGGER.debug("Retrieving the list of all types");
+        return repository.findAll();
     }
 }

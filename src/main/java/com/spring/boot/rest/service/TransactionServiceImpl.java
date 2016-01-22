@@ -36,7 +36,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
     
     @Override
-    @Transactional
+    @Transactional(readOnly = false, rollbackFor = TransactionAlreadyExists.class)
     public Transaction saveTransaction(@NotNull @Valid final Transaction transaction)
         throws TransactionAlreadyExists {
         LOGGER.debug("Creating {}", transaction);
@@ -49,7 +49,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = false, rollbackFor = TransactionDoesNotExist.class)
     public Transaction updateTransaction(Long id, @NotNull @Valid final Transaction transaction) 
         throws TransactionDoesNotExist {
         LOGGER.debug("Creating {}", transaction);
