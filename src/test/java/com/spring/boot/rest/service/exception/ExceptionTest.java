@@ -3,10 +3,8 @@ package com.spring.boot.rest.service.exception;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Test case for the exception classes:
@@ -19,7 +17,6 @@ import org.junit.Assert;
  * @author Simon Njenga
  * @version 0.1
  */
- @RunWith(MockitoJUnitRunner.class)
 public class ExceptionTest {
 
     /**

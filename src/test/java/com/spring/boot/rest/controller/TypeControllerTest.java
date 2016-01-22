@@ -23,7 +23,7 @@ import com.spring.boot.rest.util.TransactionUtil;
 @RunWith(MockitoJUnitRunner.class)
 public class TypeControllerTest {
 
-	@Mock
+    @Mock
     private TransactionService transactionService;
     
     /**
