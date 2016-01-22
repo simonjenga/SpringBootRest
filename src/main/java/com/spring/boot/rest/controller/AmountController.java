@@ -50,6 +50,7 @@ public class AmountController {
 
             Double addedAmountInTotal = 0D;
 
+            // add all the amounts together for all the transactions
             for (int i = 0; i < amounts.size(); i++) {
             	addedAmountInTotal = (addedAmountInTotal + amounts.get(i).getAmount());
             }
