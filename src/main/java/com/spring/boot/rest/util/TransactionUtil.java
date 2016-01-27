@@ -72,6 +72,6 @@ public class TransactionUtil {
      * Checks that a transaction and it's id is not null.
      */
     public static boolean transactionNotNull(Transaction transaction) {
-        return (transaction!= null && transaction.getId() != null);
+        return (transaction != null && transaction.getId() != null);
     }
 }

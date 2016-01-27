@@ -20,7 +20,7 @@ public class AmountUtil {
      * Checks that an amount and it's id is not null.
      */
     public static List<Amount> amountNotNull(Amount amount, List<Amount> amounts) {
-        if ((amount!= null && amount.getId() != null)) {
+        if ((amount != null && amount.getId() != null)) {
             amounts.add(amount);
         } else {
             Amount newAmount = new Amount();
