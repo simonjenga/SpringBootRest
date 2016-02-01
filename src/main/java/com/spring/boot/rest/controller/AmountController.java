@@ -1,6 +1,5 @@
 package com.spring.boot.rest.controller;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.boot.rest.domain.Amount;
-import com.spring.boot.rest.domain.Parent;
 import com.spring.boot.rest.service.AmountService;
 import com.spring.boot.rest.service.exception.AmountDoesNotExist;
 import com.spring.boot.rest.service.exception.TransactionAlreadyExists;
