@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.spring.boot.rest.domain.Transaction;
 import com.spring.boot.rest.repository.TransactionRepository;
@@ -120,7 +120,7 @@ public class TransactionServiceImplTest {
      */
     private void stubRepositoryToReturnExistingTransaction() {
     	final Transaction transaction = TransactionUtil.createTransaction();
-    	Mockito.when(transactionRepository.findOne(transaction.getId())).thenReturn(transaction);
+    	Mockito.when(transactionRepository.getOne(transaction.getId())).thenReturn(transaction);
     }
 
     @After
