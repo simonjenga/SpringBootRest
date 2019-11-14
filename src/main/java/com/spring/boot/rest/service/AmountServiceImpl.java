@@ -39,17 +39,17 @@ public class AmountServiceImpl implements AmountService {
     @Override
     @Transactional(readOnly = true)
     public List<Amount> getAmountList(Long id) throws AmountDoesNotExist {
-    	LOGGER.debug("Retrieving{} the list of all transactions by ID:", id);
-    	
-    	Optional<Amount> existingOptional = repository.findById(id);
-    	Amount existing = null;
-    	
+        LOGGER.debug("Retrieving{} the list of all transactions by ID:", id);
+
+        Optional<Amount> existingOptional = this.repository.findById(id);
+        Amount existing = null;
+
         if (existingOptional != null && existingOptional.isPresent()) {
-        	existing = existingOptional.get();;
+            existing = existingOptional.get();
         } else {
-        	throw new AmountDoesNotExist(String.format("There is not an amount with id=%s", id));
+            throw new AmountDoesNotExist(String.format("There is not an amount with id=%s", id));
         }
-        
+
         List<Amount> totalAmounts = new LinkedList<Amount>();
 
         // get amounts for all transactions that are NOT transitively linked by their parent_id to transaction_id
