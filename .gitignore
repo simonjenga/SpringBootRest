@@ -7,4 +7,5 @@ local-repo/
 .classpath
 .project
 .wtpmodules
+.DS_Store
 GoEuroTest.csv
