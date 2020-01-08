@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @version 0.1
  */
 @Entity
-@Table(name = "parent")
+@Table(name = "parents")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Parent implements DomainObject {
 

@@ -40,12 +40,12 @@ public class TransactionServiceImpl implements TransactionService {
     public Transaction saveTransaction(@NotNull @Valid final Transaction transaction)
         throws TransactionAlreadyExists {
         LOGGER.debug("Creating {}", transaction);
-        Transaction existing = repository.findOne(transaction.getId());
+        Transaction existing = this.repository.getOne(transaction.getId());
         if (existing != null) {
             throw new TransactionAlreadyExists(
                 String.format("There already exists a transaction with id=%s", transaction.getId()));
         }
-        return repository.save(transaction);
+        return this.repository.save(transaction);
     }
 
     @Override
@@ -53,21 +53,20 @@ public class TransactionServiceImpl implements TransactionService {
     public Transaction updateTransaction(Long id, @NotNull @Valid final Transaction transaction) 
         throws TransactionDoesNotExist {
         LOGGER.debug("Creating {}", transaction);
-        Transaction existing = repository.findOne(id);
+        Transaction existing = this.repository.getOne(id);
         if (existing == null) {
-            throw new TransactionDoesNotExist(
-                String.format("There is not a transaction with id=%s", id));
+            throw new TransactionDoesNotExist(String.format("There is not a transaction with id=%s", id));
         }
         existing.setAmount(transaction.getAmount());    	
         existing.setType(transaction.getType());
         existing.setParent_id(transaction.getParent_id());
-        return repository.save(transaction);
+        return this.repository.save(transaction);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Transaction> getTransactionList() {
         LOGGER.debug("Retrieving the list of all transactions");
-        return repository.findAll();
+        return this.repository.findAll();
     }
 }

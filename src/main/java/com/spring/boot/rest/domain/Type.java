@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @version 0.1
  */
 @Entity
-@Table(name = "type")
+@Table(name = "types")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Type implements DomainObject {
 

@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.spring.boot.rest.domain.Amount;
 import com.spring.boot.rest.domain.Transaction;
@@ -20,7 +20,7 @@ import com.spring.boot.rest.util.TransactionUtil;
  * @author Simon Njenga
  * @version 0.1
  */
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class AmountControllerTest {
 
     @Mock

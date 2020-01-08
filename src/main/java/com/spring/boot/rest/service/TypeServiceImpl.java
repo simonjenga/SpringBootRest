@@ -31,19 +31,19 @@ public class TypeServiceImpl implements TypeService {
     private static final Logger LOGGER = LoggerFactory.getLogger(TypeServiceImpl.class);
     private final TypeRepository repository;
 
+    @PersistenceContext
+    private EntityManager em;
+
     @Inject
     public TypeServiceImpl(final TypeRepository repository) {
         this.repository = repository;
     }
 
-    @PersistenceContext
-    private EntityManager em;
-
     @Override
     @Transactional(readOnly = true)
     public List<Type> getTypeList(String type) {
         LOGGER.debug("Retrieving {}", type);
-        TypedQuery<Type> query = em.createQuery("select transaction from Type t where t.type = ?1", Type.class);
+        TypedQuery<Type> query = this.em.createQuery("select transaction from Type t where t.type = ?1", Type.class);
         query.setParameter(1, type);
         return query.getResultList();
     }
@@ -52,6 +52,6 @@ public class TypeServiceImpl implements TypeService {
     @Transactional(readOnly = true)
     public List<Type> getAllTypeList() {
         LOGGER.debug("Retrieving the list of all types");
-        return repository.findAll();
+        return this.repository.findAll();
     }
 }
