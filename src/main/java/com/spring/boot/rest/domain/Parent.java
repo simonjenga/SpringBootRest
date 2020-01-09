@@ -43,8 +43,18 @@ public class Parent implements DomainObject {
     /**
      * Public default constructor
      */
-    public Parent() {	
-    }    
+    public Parent() {
+        super();
+    }
+    
+    /**
+     * Public constructor
+     */
+    public Parent(Long id, Long parent_id, Transaction transaction) {
+        this.id = id;
+        this.parent_id = parent_id;
+        this.transaction = transaction;
+    }
 
     /**
      * @return the parent_id
