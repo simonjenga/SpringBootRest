@@ -50,7 +50,8 @@ public class Transaction implements DomainObject {
     /**
      * Public default constructor
      */
-    public Transaction() {		
+    public Transaction() {
+        super();
     }
 
     /**
