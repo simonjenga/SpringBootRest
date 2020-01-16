@@ -30,7 +30,7 @@ public class TransactionUtil {
      * Creates and returns a single transaction.
      */
     public static Transaction createTransaction() {
-    	transaction =  new Transaction();
+        transaction = new Transaction();
     	
         Amount amount = new Amount();
         amount.setId(1L);
@@ -50,6 +50,39 @@ public class TransactionUtil {
         parent.setTransaction(transaction);	
         parents.add(parent);
         
+        transaction.setId(1L);
+        transaction.setAmount(amounts);
+        transaction.setType(types);
+        transaction.setParent_id(parents);
+        
+        return transaction;
+    }
+    
+    /**
+     * Creates and updates a single transaction.
+     */
+    public static Transaction updateTransaction(Transaction oldTransaction) {
+        transaction = oldTransaction;
+    	
+        Amount amount = new Amount();
+        amount.setId(1L);
+        amount.setAmount(8000D);
+        amount.setTransaction(transaction);
+        amounts.add(amount);
+
+        Type type = new Type();
+        type.setId(1L);
+        type.setType("buses");
+        type.setTransaction(transaction);
+        types.add(type);
+
+        Parent parent = new Parent();
+        parent.setId(1L);
+        parent.setParent_id(1L);
+        parent.setTransaction(transaction);	
+        parents.add(parent);
+        
+        transaction.setId(1L);
         transaction.setAmount(amounts);
         transaction.setType(types);
         transaction.setParent_id(parents);
