@@ -1,6 +1,7 @@
 package com.spring.boot.rest.controller;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -77,7 +78,8 @@ public class TransactionControllerTest {
      * Stub method.
      */
     private void stubServiceToReturnExistingTransaction(int howMany) {
-    	Mockito.when(transactionService.getTransactionList()).thenReturn(TransactionUtil.transactionList(howMany));
+        final List<Transaction> transactions = TransactionUtil.transactionList(howMany);
+        Mockito.when(transactionService.getTransactionList()).thenReturn(transactions);
     }
     
     @After
