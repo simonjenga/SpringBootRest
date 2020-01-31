@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Test case for the exception classes:
+ * Test case for the exception classes used in this project i.e:
  *
  * {@link AmountDoesNotExist},
  * {@link TransactionAlreadyExists},

@@ -41,7 +41,17 @@ public class Amount implements DomainObject {
     /**
      * Public default constructor
      */
-    public Amount() {		
+    public Amount() {
+        super();
+    }
+    
+    /**
+     * Public constructor
+     */
+    public Amount(Long id, Double amount, Transaction transaction) {
+        this.id = id;
+        this.amount = amount;
+        this.transaction = transaction;
     }
 
     /**

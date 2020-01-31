@@ -2,6 +2,9 @@ package com.spring.boot.rest.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import com.spring.boot.rest.domain.Transaction;
 import com.spring.boot.rest.service.exception.TransactionAlreadyExists;
 import com.spring.boot.rest.service.exception.TransactionDoesNotExist;
@@ -22,7 +25,7 @@ public interface TransactionService {
      * @throws <code>TransactionAlreadyExists</code> if the <code>Transaction</code>
      *  object is not successfully persisted.
      */
-    Transaction saveTransaction(Transaction transaction)
+    Transaction saveTransaction(@NotNull @Valid final Transaction transaction)
         throws TransactionAlreadyExists;
 
     /**
@@ -34,7 +37,7 @@ public interface TransactionService {
      * @throws <code>TransactionDoesNotExist</code> if the <code>Transaction</code>
      *  object is not successfully updated.
      */
-    Transaction updateTransaction(Long id, Transaction transaction)
+    Transaction updateTransaction(Long id, @NotNull @Valid final Transaction transaction)
         throws TransactionDoesNotExist;
 
     /**

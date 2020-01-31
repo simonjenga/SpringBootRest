@@ -44,6 +44,16 @@ public class Type implements DomainObject {
      * Public default constructor
      */
     public Type() {
+        super();
+    }
+    
+    /**
+     * Public constructor
+     */
+    public Type(Long id, String type, Transaction transaction) {
+        this.id = id;
+        this.type = type;
+        this.transaction = transaction;
     }
 
     /**

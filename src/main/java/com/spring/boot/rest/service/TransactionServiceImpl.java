@@ -3,8 +3,6 @@ package com.spring.boot.rest.service;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +35,7 @@ public class TransactionServiceImpl implements TransactionService {
     
     @Override
     @Transactional(readOnly = false, rollbackFor = TransactionAlreadyExists.class)
-    public Transaction saveTransaction(@NotNull @Valid final Transaction transaction)
+    public Transaction saveTransaction(final Transaction transaction)
         throws TransactionAlreadyExists {
         LOGGER.debug("Creating {}", transaction);
         Transaction existing = this.repository.getOne(transaction.getId());
@@ -50,7 +48,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     @Transactional(readOnly = false, rollbackFor = TransactionDoesNotExist.class)
-    public Transaction updateTransaction(Long id, @NotNull @Valid final Transaction transaction) 
+    public Transaction updateTransaction(Long id, final Transaction transaction)
         throws TransactionDoesNotExist {
         LOGGER.debug("Creating {}", transaction);
         Transaction existing = this.repository.getOne(id);

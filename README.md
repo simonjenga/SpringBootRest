@@ -61,7 +61,7 @@ Building The Project:
 ----------------------
 The project compiles with ```JDK >= 1.5``` and ```Maven >= 3.1.1``` as the build tool and to also manage the project dependencies.
 
-To run Maven build, execute the following from a console/command prompt with the project root directory as the top level directory:
+To run Maven build, execute the following command from a console/command prompt with the project root directory as the top level directory:
 
 ```mvn clean package```
 
@@ -70,6 +70,10 @@ This will create a distributable and executable JAR file for the standalone appl
 Then run the JAR file created by executing the following:
 
 ```java -jar target/SpringBootRest.jar```
+
+Alternatively, this project includes Spring Boot Maven Plugin in it's Maven Build file. In order to run this project using the plug-in, execute the following command from a console/command prompt with the project root directory as the top level directory:
+
+```mvn spring-boot:run```
 
 Point your browser to: ```http://localhost:8080```
 
