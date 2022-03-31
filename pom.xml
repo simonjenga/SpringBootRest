@@ -14,7 +14,7 @@
         <org.hibernate.version>5.0.0.Final</org.hibernate.version>
         <fasterxml.jackson.version>2.10.0</fasterxml.jackson.version>
         <org.springframework.version>5.2.0.RELEASE</org.springframework.version>
-        <org.springframework.boot.version>2.2.0.RELEASE</org.springframework.boot.version>
+        <org.springframework.boot.version>2.5.12</org.springframework.boot.version>
     </properties>
 
     <!-- <parent>
